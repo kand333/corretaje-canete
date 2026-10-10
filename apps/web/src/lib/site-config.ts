@@ -3,8 +3,8 @@
  * Colors and fonts live in app/globals.css and app/layout.tsx.
  */
 export const siteConfig = {
-  name: "Portal Starter",
-  description: "Base para construir MVPs con Next.js, PostgreSQL y Prisma.",
+  name: "Corretaje Cañete",
+  description: "Corretaje de propiedades en Cañete.",
   /** BCP 47 language tag: `<html lang>`, number and date formats. */
   locale: "es-CL",
   /** Open Graph locale. */

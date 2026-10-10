@@ -1,4 +1,4 @@
-# portal-starter
+# corretaje-canete
 
 Plantilla para crear MVPs full stack con Next.js, PostgreSQL y Prisma, preparada para trabajar con Claude Code.
 

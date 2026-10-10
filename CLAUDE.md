@@ -1,7 +1,7 @@
 # CLAUDE.md
 
-portal-starter: plantilla para MVPs con auth, cuenta, panel admin (usuarios) y un módulo de ejemplo `Item`.
-Al crear un proyecto desde aquí, cambia la identidad en `packages/shared/src/app-config.ts` (`APP_SLUG`), `apps/web/src/lib/site-config.ts`, `globals.css` y este archivo.
+corretaje-canete: portal de corretaje de propiedades, creado desde portal-starter (MVP) con auth, cuenta, panel admin (usuarios) y un módulo de ejemplo `Item`.
+Identidad del proyecto: `packages/shared/src/app-config.ts` (`APP_SLUG`), `apps/web/src/lib/site-config.ts`, `globals.css` y este archivo.
 
 ## Specs (reservado)
 
