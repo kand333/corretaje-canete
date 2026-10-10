@@ -12,13 +12,15 @@ Aún no existe: no crees esos archivos a mano ni otra skill con ese nombre. Mien
 
 Monorepo npm workspaces:
 
-- `apps/web` (`@portal/web`, :3000): Next.js 16.3.7 + React 19 + Tailwind 4 + SWR. Sin acceso a BD. De los paquetes internos, depende solo de `@portal/shared`.
+- `apps/web` (`@portal/web`, :3010): Next.js 16.3.7 + React 19 + Tailwind 4 + SWR. Sin acceso a BD. De los paquetes internos, depende solo de `@portal/shared`.
   - El navegador llama a `/api/**`, que `next.config.ts` reenvía a `API_INTERNAL_URL` (cookies first-party, sin CORS).
   - Los Server Components llaman al backend directamente por `API_INTERNAL_URL` (patrones: `lib/session.ts`, `lib/public-items-api.ts`).
-- `apps/api` (`@portal/api`, :4000): solo Route Handlers REST → `services/` → `repositories/` → Prisma 7.10.0 (`adapter-pg`) → PostgreSQL.
+- `apps/api` (`@portal/api`, :4010): solo Route Handlers REST → `services/` → `repositories/` → Prisma 7.10.0 (`adapter-pg`) → PostgreSQL.
   - Errores HTTP con forma `{ message, status }` vía `lib/http/api-error.ts`.
   - Cliente Prisma generado en `apps/api/src/generated/prisma`: no se versiona; `npm run db:generate`.
 - `packages/shared` (`@portal/shared`): contrato REST (tipos, enums, límites, esquemas Zod). Los enums deben coincidir con Prisma (`tests/shared-contract.test.ts`).
+
+Puertos propios (aislados de otros proyectos): web 3010, API 4010, PostgreSQL 5443 (`corretaje-canete-postgres`). Tabla en `README.md`. Sin Redis ni contenedores de api/web.
 
 Prohibido: Server Actions; acceder a la BD desde `apps/web`; secretos en `NEXT_PUBLIC_*`; binarios en BD.
 Integraciones opcionales (no instaladas): recetas en `docs/recipes/`.
@@ -61,7 +63,7 @@ Quitar la capa pública de Item (todo lo demás sigue funcionando):
 | Comando | Uso |
 |---|---|
 | `npm run setup` | Crea los `.env.local` / `.env.test.local` y genera `AUTH_SECRET` (nunca sobrescribe) |
-| `npm run db:up` / `db:down` | PostgreSQL 16 local (Docker, `127.0.0.1:5433`, BDs `app` y `app_test`) |
+| `npm run db:up` / `db:down` | PostgreSQL 16 local (Docker, `127.0.0.1:5443`, contenedor `corretaje-canete-postgres`, BDs `app` y `app_test`) |
 | `npm run dev` | API y web juntas (`dev:api` / `dev:web` por separado) |
 | `npm test` / `lint` / `typecheck` / `build` | Todos los workspaces; acota con `-w @portal/web` (o `api`/`shared`) |
 | `npx vitest run <ruta>` | Test puntual, desde el workspace |
