@@ -32,7 +32,7 @@ export async function geocodeAddress(query: string, countryCode?: string): Promi
     const params = new URLSearchParams({ format: "jsonv2", limit: "1", q: query, ...(countryCode ? { countrycodes: countryCode } : {}) });
     const response = await fetch(`${NOMINATIM_SEARCH_URL}?${params}`, {
       // Usage policy: identifying User-Agent and cached results (~1 request/s max).
-      headers: { "User-Agent": `<AppName>/0.1 (+${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"})`, "Accept-Language": "es" },
+      headers: { "User-Agent": `<AppName>/0.1 (+${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3010"})`, "Accept-Language": "es" },
       next: { revalidate: CACHE_SECONDS },
       signal: AbortSignal.timeout(4000),
     });

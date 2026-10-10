@@ -17,8 +17,8 @@ Sin integraciones de terceros por defecto. Las recetas para agregarlas están en
 
 ```text
 apps/
-  api/        @portal/api: Next.js solo con Route Handlers REST (:4000) + Prisma
-  web/        @portal/web: Next.js App Router (:3000), sin acceso a BD
+  api/        @portal/api: Next.js solo con Route Handlers REST (:4010) + Prisma
+  web/        @portal/web: Next.js App Router (:3010), sin acceso a BD
 packages/
   shared/     @portal/shared: contrato REST (tipos, enums, esquemas Zod)
 docs/recipes/ integraciones opcionales
@@ -33,11 +33,23 @@ Requisitos: Node.js 24 (ver `.nvmrc`) y Docker.
 ```bash
 npm install
 npm run setup      # crea los .env.local y genera AUTH_SECRET (nunca sobrescribe)
-npm run db:up      # PostgreSQL 16 en 127.0.0.1:5433 (BDs app y app_test)
+npm run db:up      # PostgreSQL 16 en 127.0.0.1:5443 (BDs app y app_test)
 npm run db:migrate && npm run db:seed && npm run dev
 ```
 
-- Web: http://localhost:3000 · API: http://localhost:4000
+- Web: http://localhost:3010 · API: http://localhost:4010
+### Puertos
+
+Rango propio para no chocar con otros proyectos locales:
+
+| Servicio | Puerto host | Dónde corre |
+|---|---|---|
+| Web | 3010 | host (`npm run dev:web`) |
+| API | 4010 | host (`npm run dev:api`) |
+| PostgreSQL | 5443 | Docker, contenedor `corretaje-canete-postgres` (proyecto Compose `corretaje-canete`) |
+
+Si cambias un puerto, actualízalo también en los `.env.example` y en tus `.env.local` / `.env.test.local`.
+
 - Usuarios de desarrollo: `admin@example.com` (ADMIN) y `user@example.com` (USER), contraseña `test1234`. El seed solo corre contra `localhost`.
 
 ## Comandos

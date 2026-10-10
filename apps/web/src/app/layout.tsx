@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   // Base for the relative URLs of the metadata (canonical, Open Graph).
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3010"),
   // Pages set only their own title: "Mi cuenta" becomes "Mi cuenta | <site name>".
   title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
   description: siteConfig.description,
